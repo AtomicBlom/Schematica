@@ -1,9 +1,11 @@
 package com.github.lunatrius.schematica.handler;
 
+import com.github.lunatrius.schematica.api.PreSchematicSaveEvent;
 import com.github.lunatrius.schematica.reference.Names;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.chunk.SchematicContainer;
 import com.github.lunatrius.schematica.world.schematic.SchematicFormat;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.client.Minecraft;
@@ -68,6 +70,8 @@ public class QueueTickHandler {
         if (container.hasNext()) {
             this.queue.offer(container);
         } else {
+            FMLCommonHandler.instance().bus().post(new PreSchematicSaveEvent(container.schematic));
+
             final boolean success = SchematicFormat.writeToFile(container.file, container.schematic);
             final String message = success ? Names.Command.Save.Message.SAVE_SUCCESSFUL : Names.Command.Save.Message.SAVE_FAILED;
             container.player.addChatMessage(new ChatComponentTranslation(message, container.file.getName()));
