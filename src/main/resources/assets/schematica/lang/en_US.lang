@@ -113,7 +113,8 @@ schematica.command.save.playerSchematicDirUnavailable=There was a problem on the
 schematica.command.list.usage=/schematicaList [page]
 schematica.command.list.notAvailable=There was a problem retrieving your list of schematics.
 schematica.command.list.remove=Remove
-schematica.command.list.header=Schematic List - Page %d of %d
+schematica.command.list.download=Download
+schematica.command.list.header=--- Showing schematics page %d of %d ---
 schematica.command.list.noSuchPage=No such page
 schematica.command.list.noSchematics=You have no schematics available.
 
@@ -122,3 +123,9 @@ schematica.command.remove.usage=/schematicaRemove <name>
 schematica.command.remove.schematicRemoved=Schematic "%s" removed.
 schematica.command.remove.schematicNotFound=Schematic "%s" could not be found.
 schematica.command.remove.areYouSure=Are you sure?
+
+# commands - download
+schematica.command.download.usage=/schematicaDownload <name>
+schematica.command.download.started=Started downloading %s...
+schematica.command.download.downloadSucceeded=Successfully downloaded %s.
+schematica.command.download.downloadFail=Download failed.

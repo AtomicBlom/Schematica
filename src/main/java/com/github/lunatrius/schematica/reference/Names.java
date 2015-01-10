@@ -84,6 +84,7 @@ public final class Names {
                 public static final String USAGE = "schematica.command.list.usage";
                 public static final String LIST_NOT_AVAILABLE = "schematica.command.list.notAvailable";
                 public static final String REMOVE = "schematica.command.list.remove";
+                public static final String DOWNLOAD = "schematica.command.list.download";
                 public static final String PAGE_HEADER = "schematica.command.list.header";
                 public static final String NO_SUCH_PAGE = "schematica.command.list.noSuchPage";
                 public static final String NO_SCHEMATICS = "schematica.command.list.noSchematics";
@@ -105,6 +106,17 @@ public final class Names {
             public static final String NAME = "schematicaRemove";
         }
 
+        public static final class Download {
+            public static final class Message {
+                public static final String USAGE = "schematica.command.download.usage";
+                public static final String PLAYERS_ONLY = "schematica.command.save.playersOnly";
+                public static final String DOWNLOAD_STARTED = "schematica.command.download.started";
+                public static final String DOWNLOAD_SUCCEEDED = "schematica.command.download.downloadSucceeded";
+                public static final String DOWNLOAD_FAILED = "schematica.command.download.downloadFail";
+            }
+
+            public static final String NAME = "schematicaDownload";
+        }
     }
 
     public static final class ModId {
