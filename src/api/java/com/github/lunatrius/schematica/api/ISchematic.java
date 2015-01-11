@@ -33,6 +33,4 @@ public interface ISchematic {
     boolean toggleRendering();
 
     Vector3f dimensions();
-
-    World asWorld();
 }

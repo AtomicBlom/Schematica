@@ -514,9 +514,4 @@ public class SchematicWorld extends World implements ISchematic {
     public Vector3f dimensions() {
         return new Vector3f(this.width, this.height, this.length);
     }
-
-    @Override
-    public World asWorld() {
-        return this;
-    }
 }
