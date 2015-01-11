@@ -3,6 +3,7 @@ package com.github.lunatrius.schematica.api;
 import com.github.lunatrius.core.util.vector.Vector3f;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -32,4 +33,6 @@ public interface ISchematicaWorldExtensions {
     boolean toggleRendering();
 
     Vector3f dimensions();
+
+    World asWorld();
 }

@@ -4,14 +4,13 @@ import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.world.World;
 
 public class PostSchematicCaptureEvent extends Event {
-    private final World schematic;
+    private final ISchematicaWorldExtensions schematic;
 
-    public PostSchematicCaptureEvent(World schematic) {
-
+    public PostSchematicCaptureEvent(ISchematicaWorldExtensions schematic) {
         this.schematic = schematic;
     }
 
-    public World getSchematic() {
+    public ISchematicaWorldExtensions getSchematic() {
         return schematic;
     }
 }
