@@ -26,11 +26,5 @@ public interface ISchematic {
 
     int getHeight();
 
-    boolean blockExists(int x, int y, int z);
-
     List<TileEntity> getTileEntities();
-
-    boolean toggleRendering();
-
-    Vector3f dimensions();
 }
