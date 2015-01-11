@@ -2,6 +2,7 @@ package com.github.lunatrius.schematica.world;
 
 import com.github.lunatrius.core.util.vector.Vector3f;
 import com.github.lunatrius.core.util.vector.Vector3i;
+import com.github.lunatrius.schematica.api.ISchematicaWorldExtensions;
 import com.github.lunatrius.schematica.config.BlockInfo;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.chunk.ChunkProviderSchematic;
@@ -37,7 +38,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class SchematicWorld extends World {
+public class SchematicWorld extends World implements ISchematicaWorldExtensions {
     private static final FMLControlledNamespacedRegistry<Block> BLOCK_REGISTRY = GameData.getBlockRegistry();
     private static final WorldSettings WORLD_SETTINGS = new WorldSettings(0, WorldSettings.GameType.CREATIVE, false, false, WorldType.FLAT);
     private static final Comparator<ItemStack> BLOCK_COMPARATOR = new Comparator<ItemStack>() {
@@ -114,7 +115,8 @@ public class SchematicWorld extends World {
         return this.blocks[x][y][z];
     }
 
-    private int getBlockId(int x, int y, int z) {
+    @Override
+    public int getBlockId(int x, int y, int z) {
         if (this.isRenderingLayer && this.renderingLayer != y) {
             return 0;
         }
@@ -130,6 +132,7 @@ public class SchematicWorld extends World {
         return BLOCK_REGISTRY.getObjectById(getBlockId(x, y, z));
     }
 
+    @Override
     public boolean setBlock(int x, int y, int z, Block block, int metadata) {
         return setBlock(x, y, z, block, metadata, 0);
     }
@@ -232,10 +235,12 @@ public class SchematicWorld extends World {
         return BiomeGenBase.jungle;
     }
 
+    @Override
     public int getWidth() {
         return this.width;
     }
 
+    @Override
     public int getLength() {
         return this.length;
     }
@@ -307,6 +312,7 @@ public class SchematicWorld extends World {
         }
     }
 
+    @Override
     public List<TileEntity> getTileEntities() {
         return this.tileEntities;
     }
@@ -402,6 +408,7 @@ public class SchematicWorld extends World {
         return blockList;
     }
 
+    @Override
     public boolean toggleRendering() {
         this.isRendering = !this.isRendering;
         return this.isRendering;
@@ -503,6 +510,7 @@ public class SchematicWorld extends World {
         refreshChests();
     }
 
+    @Override
     public Vector3f dimensions() {
         return new Vector3f(this.width, this.height, this.length);
     }

@@ -1,6 +1,6 @@
 package com.github.lunatrius.schematica.world.schematic;
 
-import com.github.lunatrius.schematica.reference.Names;
+import com.github.lunatrius.schematica.api.NBTNames;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.SchematicWorld;
 import cpw.mods.fml.common.registry.GameData;
@@ -54,8 +54,8 @@ public final class SchematicUtil {
     public static ItemStack getIconFromNBT(NBTTagCompound tagCompound) {
         ItemStack icon = SchematicWorld.DEFAULT_ICON.copy();
 
-        if (tagCompound != null && tagCompound.hasKey(Names.NBT.ICON)) {
-            icon.readFromNBT(tagCompound.getCompoundTag(Names.NBT.ICON));
+        if (tagCompound != null && tagCompound.hasKey(NBTNames.ICON)) {
+            icon.readFromNBT(tagCompound.getCompoundTag(NBTNames.ICON));
 
             if (icon.getItem() == null) {
                 icon = SchematicWorld.DEFAULT_ICON.copy();
