@@ -1,16 +1,15 @@
 package com.github.lunatrius.schematica.api;
 
 import cpw.mods.fml.common.eventhandler.Event;
-import net.minecraft.world.World;
 
 public class PostSchematicCaptureEvent extends Event {
-    private final ISchematicaWorldExtensions schematic;
+    private final ISchematic schematic;
 
-    public PostSchematicCaptureEvent(ISchematicaWorldExtensions schematic) {
+    public PostSchematicCaptureEvent(ISchematic schematic) {
         this.schematic = schematic;
     }
 
-    public ISchematicaWorldExtensions getSchematic() {
+    public ISchematic getSchematic() {
         return schematic;
     }
 }

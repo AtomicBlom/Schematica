@@ -2,7 +2,7 @@ package com.github.lunatrius.schematica.world;
 
 import com.github.lunatrius.core.util.vector.Vector3f;
 import com.github.lunatrius.core.util.vector.Vector3i;
-import com.github.lunatrius.schematica.api.ISchematicaWorldExtensions;
+import com.github.lunatrius.schematica.api.ISchematic;
 import com.github.lunatrius.schematica.config.BlockInfo;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.chunk.ChunkProviderSchematic;
@@ -38,7 +38,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class SchematicWorld extends World implements ISchematicaWorldExtensions {
+public class SchematicWorld extends World implements ISchematic {
     private static final FMLControlledNamespacedRegistry<Block> BLOCK_REGISTRY = GameData.getBlockRegistry();
     private static final WorldSettings WORLD_SETTINGS = new WorldSettings(0, WorldSettings.GameType.CREATIVE, false, false, WorldType.FLAT);
     private static final Comparator<ItemStack> BLOCK_COMPARATOR = new Comparator<ItemStack>() {
@@ -513,5 +513,10 @@ public class SchematicWorld extends World implements ISchematicaWorldExtensions 
     @Override
     public Vector3f dimensions() {
         return new Vector3f(this.width, this.height, this.length);
+    }
+
+    @Override
+    public World asWorld() {
+        return this;
     }
 }

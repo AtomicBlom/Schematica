@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public interface ISchematicaWorldExtensions {
+public interface ISchematic {
     int getBlockId(int x, int y, int z);
 
     Block getBlock(int x, int y, int z);
