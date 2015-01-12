@@ -1,5 +1,6 @@
-package com.github.lunatrius.schematica.api;
+package com.github.lunatrius.schematica.api.event;
 
+import com.github.lunatrius.schematica.api.DuplicateMappingException;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.nbt.NBTTagCompound;

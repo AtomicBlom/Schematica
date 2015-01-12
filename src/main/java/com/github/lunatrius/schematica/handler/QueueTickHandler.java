@@ -1,6 +1,5 @@
 package com.github.lunatrius.schematica.handler;
 
-import com.github.lunatrius.schematica.api.PostSchematicCaptureEvent;
 import com.github.lunatrius.schematica.reference.Names;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.chunk.SchematicContainer;
@@ -10,7 +9,6 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

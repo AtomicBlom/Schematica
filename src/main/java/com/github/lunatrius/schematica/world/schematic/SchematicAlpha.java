@@ -1,7 +1,6 @@
 package com.github.lunatrius.schematica.world.schematic;
 
-import com.github.lunatrius.schematica.api.PostSchematicCaptureEvent;
-import com.github.lunatrius.schematica.api.PreSchematicSaveEvent;
+import com.github.lunatrius.schematica.api.event.PreSchematicSaveEvent;
 import com.github.lunatrius.schematica.reference.Names;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.SchematicWorld;
@@ -12,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 
 import java.util.ArrayList;

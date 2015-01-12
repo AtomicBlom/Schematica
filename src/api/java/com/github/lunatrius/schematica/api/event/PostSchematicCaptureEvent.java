@@ -1,5 +1,6 @@
-package com.github.lunatrius.schematica.api;
+package com.github.lunatrius.schematica.api.event;
 
+import com.github.lunatrius.schematica.api.ISchematic;
 import cpw.mods.fml.common.eventhandler.Event;
 
 public class PostSchematicCaptureEvent extends Event {
