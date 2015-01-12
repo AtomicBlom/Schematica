@@ -38,7 +38,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class SchematicWorld extends World implements ISchematic {
+public class SchematicWorld extends World {
     private static final FMLControlledNamespacedRegistry<Block> BLOCK_REGISTRY = GameData.getBlockRegistry();
     private static final WorldSettings WORLD_SETTINGS = new WorldSettings(0, WorldSettings.GameType.CREATIVE, false, false, WorldType.FLAT);
     private static final Comparator<ItemStack> BLOCK_COMPARATOR = new Comparator<ItemStack>() {
@@ -131,7 +131,6 @@ public class SchematicWorld extends World implements ISchematic {
         return BLOCK_REGISTRY.getObjectById(getBlockId(x, y, z));
     }
 
-    @Override
     public boolean setBlock(int x, int y, int z, Block block, int metadata) {
         return setBlock(x, y, z, block, metadata, 0);
     }
@@ -236,12 +235,10 @@ public class SchematicWorld extends World implements ISchematic {
         return BiomeGenBase.jungle;
     }
 
-    @Override
     public int getWidth() {
         return this.width;
     }
 
-    @Override
     public int getLength() {
         return this.length;
     }
@@ -278,7 +275,6 @@ public class SchematicWorld extends World implements ISchematic {
         return true;
     }
 
-    @Override
     public void setBlockMetadata(int x, int y, int z, int metadata) {
         if (x < 0 || y < 0 || z < 0 || x >= this.width || y >= this.height || z >= this.length) {
             return;
@@ -300,12 +296,10 @@ public class SchematicWorld extends World implements ISchematic {
         return block.isSideSolid(this, x, y, z, side);
     }
 
-    @Override
     public void setIcon(ItemStack icon) {
         this.icon = icon;
     }
 
-    @Override
     public ItemStack getIcon() {
         return this.icon;
     }
@@ -323,7 +317,6 @@ public class SchematicWorld extends World implements ISchematic {
         }
     }
 
-    @Override
     public List<TileEntity> getTileEntities() {
         return this.tileEntities;
     }

@@ -157,8 +157,10 @@ public class SchematicAlpha extends SchematicFormat {
             }
         }
 
+
         PreSchematicSaveEvent event = new PreSchematicSaveEvent(mappings);
-        MinecraftForge.EVENT_BUS.post(event);
+        //TODO: Post event on the bus.
+        //MinecraftForge.EVENT_BUS.post(event);
 
         NBTTagCompound nbtMapping = new NBTTagCompound();
         for (Map.Entry<String, Short> entry : mappings.entrySet()) {
