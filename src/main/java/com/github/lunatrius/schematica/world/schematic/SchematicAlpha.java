@@ -1,5 +1,7 @@
 package com.github.lunatrius.schematica.world.schematic;
 
+import com.github.lunatrius.schematica.api.PostSchematicCaptureEvent;
+import com.github.lunatrius.schematica.api.PreSchematicSaveEvent;
 import com.github.lunatrius.schematica.reference.Names;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.SchematicWorld;
@@ -10,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 
 import java.util.ArrayList;
@@ -106,8 +109,8 @@ public class SchematicAlpha extends SchematicFormat {
         byte extraBlocks[] = new byte[size];
         byte extraBlocksNibble[] = new byte[(int) Math.ceil(size / 2.0)];
         boolean extra = false;
-        NBTTagCompound mapping = new NBTTagCompound();
 
+        Map<String, Short> mappings = new HashMap<String, Short>();
         for (int x = 0; x < world.getWidth(); x++) {
             for (int y = 0; y < world.getHeight(); y++) {
                 for (int z = 0; z < world.getLength(); z++) {
@@ -120,8 +123,8 @@ public class SchematicAlpha extends SchematicFormat {
                     }
 
                     String name = GameData.getBlockRegistry().getNameForObject(world.getBlockRaw(x, y, z));
-                    if (!mapping.hasKey(name)) {
-                        mapping.setShort(name, (short) blockId);
+                    if (!mappings.containsKey(name)) {
+                        mappings.put(name, (short)blockId);
                     }
                 }
             }
@@ -154,6 +157,14 @@ public class SchematicAlpha extends SchematicFormat {
             }
         }
 
+        PreSchematicSaveEvent event = new PreSchematicSaveEvent(mappings);
+        MinecraftForge.EVENT_BUS.post(event);
+
+        NBTTagCompound nbtMapping = new NBTTagCompound();
+        for (Map.Entry<String, Short> entry : mappings.entrySet()) {
+            nbtMapping.setShort(entry.getKey(), entry.getValue());
+        }
+
         tagCompound.setString(Names.NBT.MATERIALS, Names.NBT.FORMAT_ALPHA);
         tagCompound.setByteArray(Names.NBT.BLOCKS, localBlocks);
         tagCompound.setByteArray(Names.NBT.DATA, localMetadata);
@@ -162,7 +173,11 @@ public class SchematicAlpha extends SchematicFormat {
         }
         tagCompound.setTag(Names.NBT.ENTITIES, new NBTTagList());
         tagCompound.setTag(Names.NBT.TILE_ENTITIES, tileEntitiesList);
-        tagCompound.setTag(Names.NBT.MAPPING_SCHEMATICA, mapping);
+        tagCompound.setTag(Names.NBT.MAPPING_SCHEMATICA, nbtMapping);
+        final NBTTagCompound extendedMetadata = event.getExtendedMetadata();
+        if (!extendedMetadata.hasNoTags()) {
+            tagCompound.setTag(Names.NBT.EXTENDED_METADATA, extendedMetadata);
+        }
 
         return true;
     }

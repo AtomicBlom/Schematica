@@ -2,7 +2,6 @@ package com.github.lunatrius.schematica.api;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 
 import java.util.Map;
 
@@ -10,11 +9,11 @@ public class PreSchematicSaveEvent extends Event {
     private final Map<String, Short> mappings;
     private final NBTTagCompound extendedMetadata;
 
-    public PreSchematicSaveEvent(Map<String, Short> mappings, NBTTagCompound extendedMetadata) {
+    public PreSchematicSaveEvent(Map<String, Short> mappings) {
 
 
         this.mappings = mappings;
-        this.extendedMetadata = extendedMetadata;
+        this.extendedMetadata = new NBTTagCompound();
     }
 
     public Map<String, Short> getMappings() {
@@ -22,6 +21,6 @@ public class PreSchematicSaveEvent extends Event {
     }
 
     public NBTTagCompound getExtendedMetadata() {
-        return extendedMetadata;
+        return extendedMetadata ;
     }
 }
