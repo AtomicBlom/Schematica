@@ -114,8 +114,7 @@ public class SchematicWorld extends World implements ISchematic {
         }
         return this.blocks[x][y][z];
     }
-
-    @Override
+    
     public int getBlockId(int x, int y, int z) {
         if (this.isRenderingLayer && this.renderingLayer != y) {
             return 0;
@@ -204,6 +203,8 @@ public class SchematicWorld extends World implements ISchematic {
         return this.metadata[x][y][z];
     }
 
+
+
     @Override
     public boolean isBlockNormalCubeDefault(int x, int y, int z, boolean _default) {
         Block block = getBlock(x, y, z);
@@ -273,8 +274,16 @@ public class SchematicWorld extends World implements ISchematic {
 
     @Override
     public boolean setBlockMetadataWithNotify(int x, int y, int z, int metadata, int flag) {
-        this.metadata[x][y][z] = (byte) (metadata & 0xFF);
+        this.setBlockMetadata(x, y, z, metadata);
         return true;
+    }
+
+    @Override
+    public void setBlockMetadata(int x, int y, int z, int metadata) {
+        if (x < 0 || y < 0 || z < 0 || x >= this.width || y >= this.height || z >= this.length) {
+            return;
+        }
+        this.metadata[x][y][z] = (byte) (metadata & 0xFF);
     }
 
     @Override
@@ -291,10 +300,12 @@ public class SchematicWorld extends World implements ISchematic {
         return block.isSideSolid(this, x, y, z, side);
     }
 
+    @Override
     public void setIcon(ItemStack icon) {
         this.icon = icon;
     }
 
+    @Override
     public ItemStack getIcon() {
         return this.icon;
     }
@@ -408,7 +419,6 @@ public class SchematicWorld extends World implements ISchematic {
         return blockList;
     }
 
-    @Override
     public boolean toggleRendering() {
         this.isRendering = !this.isRendering;
         return this.isRendering;
@@ -510,7 +520,6 @@ public class SchematicWorld extends World implements ISchematic {
         refreshChests();
     }
 
-    @Override
     public Vector3f dimensions() {
         return new Vector3f(this.width, this.height, this.length);
     }

@@ -1,6 +1,6 @@
 package com.github.lunatrius.schematica.nbt;
 
-import com.github.lunatrius.schematica.api.NBTNames;
+import com.github.lunatrius.schematica.reference.Names;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +18,7 @@ public class NBTHelper {
     }
 
     public static List<TileEntity> readTileEntitiesFromCompound(final NBTTagCompound compound, final List<TileEntity> tileEntities) {
-        final NBTTagList tagList = compound.getTagList(NBTNames.TILE_ENTITIES, Constants.NBT.TAG_COMPOUND);
+        final NBTTagList tagList = compound.getTagList(Names.NBT.TILE_ENTITIES, Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < tagList.tagCount(); i++) {
             final NBTTagCompound tileEntityCompound = tagList.getCompoundTagAt(i);
             final TileEntity tileEntity = TileEntity.createAndLoadEntity(tileEntityCompound);
@@ -40,7 +40,7 @@ public class NBTHelper {
             tagList.appendTag(tileEntityCompound);
         }
 
-        compound.setTag(NBTNames.TILE_ENTITIES, tagList);
+        compound.setTag(Names.NBT.TILE_ENTITIES, tagList);
 
         return compound;
     }
@@ -58,7 +58,7 @@ public class NBTHelper {
     }
 
     public static List<Entity> readEntitiesFromCompound(final NBTTagCompound compound, final World world, final List<Entity> entities) {
-        final NBTTagList tagList = compound.getTagList(NBTNames.ENTITIES, Constants.NBT.TAG_COMPOUND);
+        final NBTTagList tagList = compound.getTagList(Names.NBT.ENTITIES, Constants.NBT.TAG_COMPOUND);
         for (int i = 0; i < tagList.tagCount(); i++) {
             final NBTTagCompound entityCompound = tagList.getCompoundTagAt(i);
             final Entity entity = EntityList.createEntityFromNBT(entityCompound, world);
@@ -80,7 +80,7 @@ public class NBTHelper {
             tagList.appendTag(entityCompound);
         }
 
-        compound.setTag(NBTNames.ENTITIES, tagList);
+        compound.setTag(Names.NBT.ENTITIES, tagList);
 
         return compound;
     }

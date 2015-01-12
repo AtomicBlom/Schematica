@@ -1,6 +1,6 @@
 package com.github.lunatrius.schematica.world.schematic;
 
-import com.github.lunatrius.schematica.api.NBTNames;
+import com.github.lunatrius.schematica.reference.Names;
 import com.github.lunatrius.schematica.reference.Reference;
 import com.github.lunatrius.schematica.world.SchematicWorld;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,7 +23,7 @@ public abstract class SchematicFormat {
     public static SchematicWorld readFromFile(File file) {
         try {
             final NBTTagCompound tagCompound = SchematicUtil.readTagCompoundFromFile(file);
-            final String format = tagCompound.getString(NBTNames.MATERIALS);
+            final String format = tagCompound.getString(Names.NBT.MATERIALS);
             final SchematicFormat schematicFormat = FORMATS.get(format);
 
             if (schematicFormat == null) {
@@ -51,7 +51,7 @@ public abstract class SchematicFormat {
             DataOutputStream dataOutputStream = new DataOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
 
             try {
-                NBTTagCompound.func_150298_a(NBTNames.ROOT, tagCompound, dataOutputStream);
+                NBTTagCompound.func_150298_a(Names.NBT.ROOT, tagCompound, dataOutputStream);
             } finally {
                 dataOutputStream.close();
             }
@@ -69,9 +69,9 @@ public abstract class SchematicFormat {
     }
 
     static {
-        FORMATS.put(NBTNames.FORMAT_CLASSIC, new SchematicClassic());
-        FORMATS.put(NBTNames.FORMAT_ALPHA, new SchematicAlpha());
+        FORMATS.put(Names.NBT.FORMAT_CLASSIC, new SchematicClassic());
+        FORMATS.put(Names.NBT.FORMAT_ALPHA, new SchematicAlpha());
 
-        FORMAT_DEFAULT = NBTNames.FORMAT_ALPHA;
+        FORMAT_DEFAULT = Names.NBT.FORMAT_ALPHA;
     }
 }
