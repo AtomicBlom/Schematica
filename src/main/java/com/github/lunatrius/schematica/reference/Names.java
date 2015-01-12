@@ -130,8 +130,9 @@ public final class Names {
         public static final String CONTROL = "schematica.key.control";
     }
 
-    public static class NBT {
+    public static final class NBT {
         public static final String ROOT = "Schematic";
+
         public static final String MATERIALS = "Materials";
         public static final String FORMAT_CLASSIC = "Classic";
         public static final String FORMAT_ALPHA = "Alpha";
