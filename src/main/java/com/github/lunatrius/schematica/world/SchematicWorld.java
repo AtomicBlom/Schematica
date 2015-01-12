@@ -131,6 +131,10 @@ public class SchematicWorld extends World {
         return BLOCK_REGISTRY.getObjectById(getBlockId(x, y, z));
     }
 
+    public boolean setBlock(int x, int y, int z, Block block) {
+        return setBlock(x, y, z, block, 0, 0);
+    }
+
     public boolean setBlock(int x, int y, int z, Block block, int metadata) {
         return setBlock(x, y, z, block, metadata, 0);
     }
