@@ -115,7 +115,7 @@ public class SchematicWorld extends World implements ISchematic {
         return this.blocks[x][y][z];
     }
     
-    public int getBlockId(int x, int y, int z) {
+    private int getBlockId(int x, int y, int z) {
         if (this.isRenderingLayer && this.renderingLayer != y) {
             return 0;
         }
