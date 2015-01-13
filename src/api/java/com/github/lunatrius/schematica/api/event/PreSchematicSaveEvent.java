@@ -12,7 +12,11 @@ import java.util.Map;
  */
 public class PreSchematicSaveEvent extends Event {
     private final Map<String, Short> mappings;
-    private final NBTTagCompound extendedMetadata;
+
+    /**
+     * The Extended Metadata tag compound provides a facility to add custom metadata to the schematic.
+     */
+    public final NBTTagCompound extendedMetadata;
 
     public PreSchematicSaveEvent(Map<String, Short> mappings) {
         this.mappings = mappings;
@@ -35,9 +39,7 @@ public class PreSchematicSaveEvent extends Event {
         if (this.mappings.containsKey(newName)) {
             throw new DuplicateMappingException(
                     String.format(
-                            "While replacing block type %s, the block type %s already exists in the schematic. " +
-                                    "If this is intended, you should replace the blocks in the PostSchematicCaptureEvent " +
-                                    "before attempting a mapping change.",
+                            "Could not replace block type %s, the block type %s already exists in the schematic.",
                             oldName, newName
                     )
             );
@@ -51,13 +53,5 @@ public class PreSchematicSaveEvent extends Event {
         }
 
         return false;
-    }
-
-    /**
-     * Gets the Extended Metadata tag compound. It is possible to add custom metadata to the schematic via this methods.
-     * @return
-     */
-    public NBTTagCompound getExtendedMetadata() {
-        return extendedMetadata ;
     }
 }

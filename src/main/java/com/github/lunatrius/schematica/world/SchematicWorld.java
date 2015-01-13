@@ -206,8 +206,6 @@ public class SchematicWorld extends World {
         return this.metadata[x][y][z];
     }
 
-
-
     @Override
     public boolean isBlockNormalCubeDefault(int x, int y, int z, boolean _default) {
         Block block = getBlock(x, y, z);
